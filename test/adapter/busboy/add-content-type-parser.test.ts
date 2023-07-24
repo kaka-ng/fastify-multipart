@@ -1,3 +1,4 @@
+import { Blob } from 'buffer'
 import t from 'tap'
 import { FormData } from 'undici'
 import { BusboyAdapter, Storage } from '../../../lib'

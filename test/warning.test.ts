@@ -1,3 +1,4 @@
+import { Blob } from 'buffer'
 import Fastify from 'fastify'
 import t from 'tap'
 import { FormData } from 'undici'

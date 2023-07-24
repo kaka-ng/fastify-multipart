@@ -1,3 +1,4 @@
+import { Blob } from 'buffer'
 import * as fs from 'fs/promises'
 import t from 'tap'
 import { FormData } from 'undici'
