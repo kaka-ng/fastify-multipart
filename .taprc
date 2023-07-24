@@ -1,0 +1,9 @@
+ts: true
+jsx: false
+flow: false
+check-coverage: true
+coverage: true
+lines: 100
+functions: 95
+statements: 100
+branches: 99

@@ -1,0 +1,80 @@
+{
+  "name": "@kakang/fastify-multipart",
+  "version": "0.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./lib/mjs/index.js",
+      "require": "./lib/index.js"
+    }
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "clean": "npx rimraf \"lib/**/*.js\" \"lib/**/*.map\" \"lib/**/*.d.ts\" \"test/**/*.js\" \"test/**/*.map\" \"test/**/*.d.ts\"",
+    "lint": "eslint --ext .ts lib test",
+    "lint:fix": "npm run lint -- --fix",
+    "prebuild": "npm run clean",
+    "build": "npm run build:mjs && npm run build:cjs",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:mjs": "tsc -p tsconfig.mjs.json && tsc-alias -p tsconfig.mjs.json",
+    "unit": "tap",
+    "test": "npm run lint && npm run unit",
+    "coverage": "tap --coverage-report=lcovonly",
+    "prepublishOnly": "npm run build",
+    "postpublish": "npm run clean"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kaka-repo/fastify-multipart.git"
+  },
+  "author": "KaKa",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "@types/node": "^20.4.2",
+    "@types/tap": "^15.0.8",
+    "@typescript-eslint/eslint-plugin": "5.62.0",
+    "@typescript-eslint/parser": "5.62.0",
+    "eslint": "^8.45.0",
+    "eslint-config-standard-with-typescript": "^36.1.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^16.0.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "fastify": "^4.20.0",
+    "tap": "^16.3.7",
+    "ts-node": "^10.9.1",
+    "tsc-alias": "^1.8.7",
+    "typescript": "~5.1.6",
+    "undici": "^5.22.1"
+  },
+  "dependencies": {
+    "fastify-plugin": "^4.5.1"
+  },
+  "peerDependencies": {
+    "@types/busboy": "^1.5.0",
+    "@types/formidable": "^3.4.0",
+    "busboy": "^1.6.0",
+    "formidable": "^3.5.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/busboy": {
+      "optional": true
+    },
+    "@types/formidable": {
+      "optional": true
+    },
+    "busboy": {
+      "optional": true
+    },
+    "formidable": {
+      "optional": true
+    }
+  }
+}
