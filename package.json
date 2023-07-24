@@ -38,6 +38,8 @@
   "author": "KaKa",
   "license": "GPL-3.0",
   "devDependencies": {
+    "@types/busboy": "^1.5.0",
+    "@types/formidable": "^3.4.0",
     "@types/node": "^20.4.4",
     "@types/tap": "^15.0.8",
     "@typescript-eslint/eslint-plugin": "5.62.0",
