@@ -247,13 +247,3 @@ export const FastifyMultipart = FastifyPlugin(plugin, {
   dependencies: []
 })
 export default FastifyMultipart
-
-// adapter
-export { Adapter } from './adapter/adapter'
-export { BusboyAdapter } from './adapter/busboy'
-export { FormidableAdapter } from './adapter/formidable'
-
-// storage
-export { BufferStorage } from './storage/buffer'
-export { FileStorage } from './storage/file'
-export { Storage } from './storage/storage'

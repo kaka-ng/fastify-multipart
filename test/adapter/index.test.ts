@@ -1,7 +1,8 @@
 import { Blob } from 'buffer'
 import t from 'tap'
 import { FormData } from 'undici'
-import { Adapter, Storage } from '../../lib'
+import { Adapter } from '../../lib/adapter/adapter'
+import { Storage } from '../../lib/storage/storage'
 import { createFastify } from '../create-fastify'
 import { request } from '../request'
 

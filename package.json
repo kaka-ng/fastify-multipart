@@ -8,6 +8,30 @@
     ".": {
       "import": "./lib/mjs/index.js",
       "require": "./lib/index.js"
+    },
+    "./adapter/adapter.js": {
+      "import": "./lib/mjs/adapter/adapter.js",
+      "require": "./lib/adapter/adapter.js"
+    },
+    "./adapter/busboy.js": {
+      "import": "./lib/mjs/adapter/busboy.js",
+      "require": "./lib/adapter/busboy.js"
+    },
+    "./adapter/formidable.js": {
+      "import": "./lib/mjs/adapter/formidable.js",
+      "require": "./lib/adapter/formidable.js"
+    },
+    "./storage/storage.js": {
+      "import": "./lib/mjs/storage/storage.js",
+      "require": "./lib/storage/storage.js"
+    },
+    "./storage/buffer.js": {
+      "import": "./lib/mjs/storage/buffer.js",
+      "require": "./lib/storage/buffer.js"
+    },
+    "./storage/file.js": {
+      "import": "./lib/mjs/storage/file.js",
+      "require": "./lib/storage/file.js"
     }
   },
   "directories": {
