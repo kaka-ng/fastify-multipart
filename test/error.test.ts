@@ -1,5 +1,6 @@
 import t from 'tap'
-import { Adapter, Storage } from '../lib'
+import { Adapter } from '../lib/adapter/adapter'
+import { Storage } from '../lib/storage/storage'
 import { createFastify } from './create-fastify'
 
 t.test('missing Adapter', async function (t) {
