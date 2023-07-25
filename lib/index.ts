@@ -87,9 +87,6 @@ const plugin: FastifyPluginAsync<FastifyMultipartOption> = async function (fasti
 
     const { fields, files } = await adapter.parse(request)
 
-    if (option.removeFilesFromBody !== true) {
-      Object.assign(fields, files)
-    }
     request.body = fields
     request.files = files
 
@@ -185,9 +182,6 @@ const plugin: FastifyPluginAsync<FastifyMultipartOption> = async function (fasti
 
       const { fields, files } = await adapter.parse(request)
 
-      if (option.removeFilesFromBody !== true) {
-        Object.assign(fields, files)
-      }
       request.files = files
 
       return fields
@@ -220,9 +214,6 @@ const plugin: FastifyPluginAsync<FastifyMultipartOption> = async function (fasti
 
       const { fields, files } = await adapter.parse(request)
 
-      if (option.removeFilesFromBody !== true) {
-        Object.assign(fields, files)
-      }
       request.body = fields
       request.files = files
     })

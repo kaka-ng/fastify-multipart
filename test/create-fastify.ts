@@ -30,13 +30,12 @@ export async function createFastify (t: Tap.Test, options?: FastifyMultipartOpti
           case 'file': {
             const file = await request[kStorage].save(name, value, info)
             request[kAdapter]._update(files as Files, file.name, file.value)
+            if (options?.removeFilesFromBody !== true) {
+              request[kAdapter]._update(body, file.name, file.value.value as string)
+            }
             break
           }
         }
-      }
-
-      if (options?.removeFilesFromBody !== true) {
-        Object.assign(body, files)
       }
 
       request.body = body

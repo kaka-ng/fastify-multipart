@@ -54,7 +54,7 @@ t.test('multipart already parsed', async function (t) {
     const json = await response.json()
 
     t.equal(json.body.foo, 'bar')
-    t.same(json.body.file, { name: 'hello_world.txt', value: 'hello_world.txt' })
+    t.equal(json.body.file, 'hello_world.txt')
     t.same(json.files.file, { name: 'hello_world.txt', value: 'hello_world.txt' })
   })
 
@@ -100,7 +100,7 @@ t.test('multipart already parsed', async function (t) {
     const json = await response.json()
 
     t.equal(json.body.foo, 'bar')
-    t.same(json.body.file, { name: 'hello_world.txt', value: 'hello_world.txt' })
+    t.equal(json.body.file, 'hello_world.txt')
     t.same(json.files.file, { name: 'hello_world.txt', value: 'hello_world.txt' })
   })
 
@@ -149,7 +149,7 @@ t.test('multipart already parsed', async function (t) {
     const json = await response.json()
 
     t.equal(json.body.foo, 'bar')
-    t.same(json.body.file, { name: 'hello_world.txt', value: 'hello_world.txt' })
+    t.equal(json.body.file, 'hello_world.txt')
     t.same(json.files.file, { name: 'hello_world.txt', value: 'hello_world.txt' })
   })
 })

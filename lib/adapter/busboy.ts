@@ -9,6 +9,7 @@ import { Adapter, type AdapterIteratorResult, type AdapterParseReturn } from './
 export class BusboyAdapter extends Adapter {
   #busboy: Busboy.Busboy
   #storage: Storage
+  #removeFromBody: boolean
 
   constructor (request: FastifyRequest, option: FastifyMultipartOption) {
     super(request, option)
@@ -17,6 +18,7 @@ export class BusboyAdapter extends Adapter {
       headers: request.raw.headers,
       limits: option.limits
     })
+    this.#removeFromBody = option.removeFilesFromBody ?? false
     this.#storage = request[kStorage]
   }
 
@@ -32,6 +34,9 @@ export class BusboyAdapter extends Adapter {
         case 'file': {
           const file = await this.#storage.save(name, value, info)
           this._update(result.files, file.name, file.value)
+          if (!this.#removeFromBody) {
+            this._update(result.fields, file.name, file.value.value as string)
+          }
           break
         }
       }
