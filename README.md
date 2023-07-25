@@ -35,7 +35,10 @@ yarn add busboy
 ## Usage
 
 ```ts
-import FastifyMultipart, { BusboyAdapter, FileStorage, MemoryStorage } from '@kakang/fastify-multipart'
+import FastifyMultipart from '@kakang/fastify-multipart'
+import { BusboyAdapter } from '@kakang/fastify-multipart/lib/adapter/busboy'
+import { FileStorage } from '@kakang/fastify-multipart/lib/storage/file'
+import { BufferStorage } from '@kakang/fastify-multipart/lib/storage/buffer'
 
 fastify.register(FastifyMultipart, {
   adapter: BusboyAdapter,
@@ -84,14 +87,14 @@ fastify.post('/', async function(request, reply) {
 fastify.register(FastifyBusboy, {
   addContentTypeParser: true,
   adapter: BusboyAdapter,
-  storage: MemoryStorage
+  storage: BufferStorage
 })
 
 // add `preValidation` hook which will automatic parse all `multipart/form-data` found
 fastify.register(FastifyBusboy, {
   addHooks: true,
   adapter: BusboyAdapter,
-  storage: MemoryStorage
+  storage: BufferStorage
 })
 
 ```
@@ -105,32 +108,30 @@ By default, we provide `BusboyAdapter` and `FormidableAdapter`.
 You may also extends `Adapter` and built your own one.
 
 ```ts
-import FastifyMultipart, { 
-  BusboyAdapter, 
-  FormidableAdapter, 
-  Adapter, 
-  MemoryStorage
-} from '@kakang/fastify-multipart'
+import FastifyMultipart from '@kakang/fastify-multipart'
+import { Adapter } from '@kakang/fastify-multipart/lib/adapter/adapter'
+import { BusboyAdapter } from '@kakang/fastify-multipart/lib/adapter/busboy'
+import { FormidableAdapter } from '@kakang/fastify-multipart/lib/adapter/formidable'
+import { BufferStorage } from '@kakang/fastify-multipart/lib/storage/buffer'
 
 fastify.register(FastifyBusboy, {
   adapter: BusboyAdapter,
-  storage: MemoryStorage,
+  storage: BufferStorage,
 })
 ```
 
 #### options.storage
 
 The option for storage engine.
-By default, we provide `FileStorage` and `MemoryStorage`.
+By default, we provide `FileStorage` and `BufferStorage`.
 You may also extends `Storage` and built your own one.
 
 ```ts
-import FastifyMultipart, { 
-  BusboyAdapter, 
-  FileStorage, 
-  MemoryStorage, 
-  Storage
-} from '@kakang/fastify-multipart'
+import FastifyMultipart from '@kakang/fastify-multipart'
+import { BusboyAdapter } from '@kakang/fastify-multipart/lib/adapter/busboy'
+import { Storage } from '@kakang/fastify-multipart/lib/storage/storage'
+import { BufferStorage } from '@kakang/fastify-multipart/lib/storage/buffer'
+import { FileStorage } from '@kakang/fastify-multipart/lib/storage/file'
 
 fastify.register(FastifyBusboy, {
   adapter: BusboyAdapter,
@@ -143,14 +144,13 @@ fastify.register(FastifyBusboy, {
 This options will not add any files fields to body when enabled.
 
 ```ts
-import FastifyMultipart, { 
-  BusboyAdapter,
-  MemoryStorage
-} from '@kakang/fastify-multipart'
+import FastifyMultipart from '@kakang/fastify-multipart'
+import { BusboyAdapter } from '@kakang/fastify-multipart/lib/adapter/busboy'
+import { BufferStorage } from '@kakang/fastify-multipart/lib/storage/buffer'
 
 fastify.register(FastifyBusboy, {
   adapter: BusboyAdapter,
-  storage: MemoryStorage,
+  storage: BufferStorage,
   removeFilesFromBody: true
 })
 ```
