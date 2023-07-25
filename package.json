@@ -9,25 +9,49 @@
       "import": "./lib/mjs/index.js",
       "require": "./lib/index.js"
     },
+    "./lib/adapter/adapter": {
+      "import": "./lib/mjs/adapter/adapter.js",
+      "require": "./lib/adapter/adapter.js"
+    },
     "./lib/adapter/adapter.js": {
       "import": "./lib/mjs/adapter/adapter.js",
       "require": "./lib/adapter/adapter.js"
+    },
+    "./lib/adapter/busboy": {
+      "import": "./lib/mjs/adapter/busboy.js",
+      "require": "./lib/adapter/busboy.js"
     },
     "./lib/adapter/busboy.js": {
       "import": "./lib/mjs/adapter/busboy.js",
       "require": "./lib/adapter/busboy.js"
     },
+    "./lib/adapter/formidable": {
+      "import": "./lib/mjs/adapter/formidable.js",
+      "require": "./lib/adapter/formidable.js"
+    },
     "./lib/adapter/formidable.js": {
       "import": "./lib/mjs/adapter/formidable.js",
       "require": "./lib/adapter/formidable.js"
+    },
+    "./lib/storage/storage": {
+      "import": "./lib/mjs/storage/storage.js",
+      "require": "./lib/storage/storage.js"
     },
     "./lib/storage/storage.js": {
       "import": "./lib/mjs/storage/storage.js",
       "require": "./lib/storage/storage.js"
     },
+    "./lib/storage/buffer": {
+      "import": "./lib/mjs/storage/buffer.js",
+      "require": "./lib/storage/buffer.js"
+    },
     "./lib/storage/buffer.js": {
       "import": "./lib/mjs/storage/buffer.js",
       "require": "./lib/storage/buffer.js"
+    },
+    "./lib/storage/file": {
+      "import": "./lib/mjs/storage/file.js",
+      "require": "./lib/storage/file.js"
     },
     "./lib/storage/file.js": {
       "import": "./lib/mjs/storage/file.js",
