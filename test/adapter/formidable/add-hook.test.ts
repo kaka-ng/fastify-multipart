@@ -27,7 +27,7 @@ t.test('FormidableAdapter - addHook', function (t) {
     const json = await response.json()
 
     t.equal(json.body.foo, 'bar')
-    t.same(json.body.file, { name: 'hello_world.txt', value: 'hello_world.txt' })
+    t.equal(json.body.file, 'hello_world.txt')
     t.same(json.files.file, { name: 'hello_world.txt', value: 'hello_world.txt' })
   })
 
@@ -52,7 +52,7 @@ t.test('FormidableAdapter - addHook', function (t) {
     const json = await response.json()
 
     t.same(json.body.foo, ['bar', 'baz', 'hello'])
-    t.same(json.body.file, { name: 'hello_world.txt', value: 'hello_world.txt' })
+    t.equal(json.body.file, 'hello_world.txt')
     t.same(json.files.file, { name: 'hello_world.txt', value: 'hello_world.txt' })
   })
 
@@ -77,11 +77,7 @@ t.test('FormidableAdapter - addHook', function (t) {
     const json = await response.json()
 
     t.equal(json.body.foo, 'bar')
-    t.same(json.body.file, [
-      { name: 'hello_world1.txt', value: 'hello_world1.txt' },
-      { name: 'hello_world2.txt', value: 'hello_world2.txt' },
-      { name: 'hello_world3.txt', value: 'hello_world3.txt' }
-    ])
+    t.same(json.body.file, ['hello_world1.txt', 'hello_world2.txt', 'hello_world3.txt'])
     t.same(json.files.file, [
       { name: 'hello_world1.txt', value: 'hello_world1.txt' },
       { name: 'hello_world2.txt', value: 'hello_world2.txt' },

@@ -38,8 +38,8 @@ t.test('FileStorage - addContentTypeParser', function (t) {
     t.equal(json.body.foo, 'bar')
     {
       t.ok(json.body.file)
-      t.equal(json.body.file.value.startsWith(uploadDir), true)
-      const buf = await fs.readFile(json.body.file.value)
+      t.equal(json.body.file.startsWith(uploadDir), true)
+      const buf = await fs.readFile(json.body.file)
       t.equal(buf.toString(), 'helloworld')
     }
     {
@@ -78,8 +78,8 @@ t.test('FileStorage - addContentTypeParser', function (t) {
     t.same(json.body.foo, ['bar', 'baz', 'hello'])
     {
       t.ok(json.body.file)
-      t.equal(json.body.file.value.startsWith(uploadDir), true)
-      const buf = await fs.readFile(json.body.file.value)
+      t.equal(json.body.file.startsWith(uploadDir), true)
+      const buf = await fs.readFile(json.body.file)
       t.equal(buf.toString(), 'helloworld')
     }
     {
@@ -118,16 +118,16 @@ t.test('FileStorage - addContentTypeParser', function (t) {
     t.equal(json.body.foo, 'bar')
     {
       t.ok(json.body.file[0])
-      t.equal(json.body.file[0].value.startsWith(uploadDir), true)
-      const buf1 = await fs.readFile(json.body.file[0].value)
+      t.equal(json.body.file[0].startsWith(uploadDir), true)
+      const buf1 = await fs.readFile(json.body.file[0])
       t.equal(buf1.toString(), 'helloworld')
       t.ok(json.body.file[1])
-      t.equal(json.body.file[1].value.startsWith(uploadDir), true)
-      const buf2 = await fs.readFile(json.body.file[1].value)
+      t.equal(json.body.file[1].startsWith(uploadDir), true)
+      const buf2 = await fs.readFile(json.body.file[1])
       t.equal(buf2.toString(), 'helloworldhelloworld')
       t.ok(json.body.file[2])
-      t.equal(json.body.file[2].value.startsWith(uploadDir), true)
-      const buf3 = await fs.readFile(json.body.file[2].value)
+      t.equal(json.body.file[2].startsWith(uploadDir), true)
+      const buf3 = await fs.readFile(json.body.file[2])
       t.equal(buf3.toString(), 'helloworldhelloworldhelloworld')
     }
     {

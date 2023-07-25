@@ -11,6 +11,7 @@ import { Adapter, type AdapterIteratorResult, type AdapterParseReturn } from './
 export class FormidableAdapter extends Adapter {
   #formidable: IncomingForm
   #storage: Storage
+  #removeFromBody: boolean
 
   constructor (request: FastifyRequest, option: FastifyMultipartOption) {
     super(request, option)
@@ -22,6 +23,7 @@ export class FormidableAdapter extends Adapter {
       maxFileSize: option.limits?.fileSize,
       maxTotalFileSize: (option.limits?.fieldSize ?? 200 * 1024 * 1024) * (option.limits?.files ?? option.limits?.parts ?? 20)
     })
+    this.#removeFromBody = option.removeFilesFromBody ?? false
     this.#storage = request[kStorage]
   }
 
@@ -37,6 +39,9 @@ export class FormidableAdapter extends Adapter {
         case 'file': {
           const file = await this.#storage.save(name, value, info)
           this._update(result.files, file.name, file.value)
+          if (!this.#removeFromBody) {
+            this._update(result.fields, file.name, file.value.value as string)
+          }
           break
         }
       }

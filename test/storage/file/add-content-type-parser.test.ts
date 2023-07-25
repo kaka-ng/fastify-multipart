@@ -1,5 +1,6 @@
 import { Blob } from 'buffer'
 import * as fs from 'fs/promises'
+import * as os from 'os'
 import t from 'tap'
 import { FormData } from 'undici'
 import { BusboyAdapter, FileStorage } from '../../../lib'
@@ -28,11 +29,8 @@ t.test('FileStorage - addContentTypeParser', function (t) {
     const json = await response.json()
 
     t.equal(json.body.foo, 'bar')
-    {
-      t.ok(json.body.file)
-      const buf = await fs.readFile(json.body.file.value)
-      t.equal(buf.toString(), 'helloworld')
-    }
+    t.ok(json.body.file)
+    t.equal(json.body.file.startsWith(os.tmpdir()), true)
     {
       t.ok(json.files.file)
       const buf = await fs.readFile(json.files.file.value)
@@ -61,11 +59,8 @@ t.test('FileStorage - addContentTypeParser', function (t) {
     const json = await response.json()
 
     t.same(json.body.foo, ['bar', 'baz', 'hello'])
-    {
-      t.ok(json.body.file)
-      const buf = await fs.readFile(json.body.file.value)
-      t.equal(buf.toString(), 'helloworld')
-    }
+    t.ok(json.body.file)
+    t.equal(json.body.file.startsWith(os.tmpdir()), true)
     {
       t.ok(json.files.file)
       const buf = await fs.readFile(json.files.file.value)
@@ -94,17 +89,12 @@ t.test('FileStorage - addContentTypeParser', function (t) {
     const json = await response.json()
 
     t.equal(json.body.foo, 'bar')
-    {
-      t.ok(json.body.file[0])
-      const buf1 = await fs.readFile(json.body.file[0].value)
-      t.equal(buf1.toString(), 'helloworld')
-      t.ok(json.body.file[1])
-      const buf2 = await fs.readFile(json.body.file[1].value)
-      t.equal(buf2.toString(), 'helloworldhelloworld')
-      t.ok(json.body.file[2])
-      const buf3 = await fs.readFile(json.body.file[2].value)
-      t.equal(buf3.toString(), 'helloworldhelloworldhelloworld')
-    }
+    t.ok(json.body.file[0])
+    t.equal(json.body.file[0].startsWith(os.tmpdir()), true)
+    t.ok(json.body.file[1])
+    t.equal(json.body.file[1].startsWith(os.tmpdir()), true)
+    t.ok(json.body.file[2])
+    t.equal(json.body.file[2].startsWith(os.tmpdir()), true)
     {
       t.ok(json.files.file[0])
       const buf1 = await fs.readFile(json.files.file[0].value)
