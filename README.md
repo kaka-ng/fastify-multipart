@@ -27,9 +27,9 @@ npm install busboy --save
 yarn add busboy
 
 // For FormidableAdapter
-npm install busboy --save
+npm install formidable --save
 
-yarn add busboy
+yarn add formidable
 ```
 
 ## Usage
