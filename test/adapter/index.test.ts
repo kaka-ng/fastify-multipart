@@ -44,6 +44,7 @@ t.test('Adapter', function (t) {
       iterator: true
     })
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     const response = await request(fastify.listeningOrigin, JSON.stringify({ hello: 'world' }) as any, { 'Content-Type': 'application/json' })
     t.equal(response.status, 200)
 
@@ -65,6 +66,7 @@ t.test('Adapter', function (t) {
       inline: true
     })
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     const response = await request(fastify.listeningOrigin, JSON.stringify({ hello: 'world' }) as any, { 'Content-Type': 'application/json' })
     t.equal(response.status, 200)
 
@@ -85,6 +87,7 @@ t.test('Adapter', function (t) {
       storage: Storage
     })
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     const response = await request(fastify.listeningOrigin, JSON.stringify({ hello: 'world' }) as any, { 'Content-Type': 'application/json' })
     t.equal(response.status, 200)
 

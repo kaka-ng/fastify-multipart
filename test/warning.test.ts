@@ -16,6 +16,7 @@ t.test('multipart already parsed', async function (t) {
 
     const fastify = Fastify(fastifyOptions)
 
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     t.teardown(fastify.close)
 
     fastify.addHook('preValidation', async function (request) {
@@ -65,6 +66,7 @@ t.test('multipart already parsed', async function (t) {
 
     const fastify = Fastify(fastifyOptions)
 
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     t.teardown(fastify.close)
 
     await fastify.register(FastifyMultipart, {
@@ -111,6 +113,7 @@ t.test('multipart already parsed', async function (t) {
 
     const fastify = Fastify(fastifyOptions)
 
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     t.teardown(fastify.close)
 
     await fastify.register(FastifyMultipart, {

@@ -1,4 +1,5 @@
 import Fastify, { type FastifyInstance } from 'fastify'
+import { type Test } from 'tap'
 import FastifyMultipart, { type FastifyMultipartOption } from '../lib'
 import { type Files } from '../lib/adapter/adapter'
 import { kAdapter, kStorage } from '../lib/symbols'
@@ -6,7 +7,7 @@ import { kAdapter, kStorage } from '../lib/symbols'
 // reduce keep alive to prevent `undici` keep the socket open
 export const fastifyOptions = { keepAliveTimeout: 100 }
 
-export async function createFastify (t: Tap.Test, options?: FastifyMultipartOption, parseMode?: { inline?: boolean | any, iterator?: boolean | any }): Promise<FastifyInstance> {
+export async function createFastify (t: Test, options?: FastifyMultipartOption, parseMode?: { inline?: boolean | any, iterator?: boolean | any }): Promise<FastifyInstance> {
   parseMode ??= {}
   const inline = parseMode.inline ?? false
   const iterator = parseMode.iterator ?? false
@@ -24,6 +25,7 @@ export async function createFastify (t: Tap.Test, options?: FastifyMultipartOpti
       for await (const { type, name, value, info } of request.multipart()) {
         switch (type) {
           case 'field': {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             request[kAdapter]._update(body, name, value)
             break
           }
@@ -31,6 +33,7 @@ export async function createFastify (t: Tap.Test, options?: FastifyMultipartOpti
             const file = await request[kStorage].save(name, value, info)
             request[kAdapter]._update(files as Files, file.name, file.value)
             if (options?.removeFilesFromBody !== true) {
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
               request[kAdapter]._update(body, file.name, file.value.value as string)
             }
             break
@@ -49,6 +52,7 @@ export async function createFastify (t: Tap.Test, options?: FastifyMultipartOpti
 
   await fastify.listen({ port: 0, host: '127.0.0.1' })
 
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   t.teardown(fastify.close)
 
   return await fastify

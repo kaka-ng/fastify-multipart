@@ -35,7 +35,7 @@ t.test('FileStorage - multipart', function (t) {
     t.equal(json.body.file.startsWith(os.tmpdir()), true)
     {
       t.ok(json.files.file)
-      const buf = await fs.readFile(json.files.file.value)
+      const buf = await fs.readFile(json.files.file.value as string)
       t.equal(buf.toString(), 'helloworld')
     }
   })
@@ -66,7 +66,7 @@ t.test('FileStorage - multipart', function (t) {
     t.equal(json.body.file.startsWith(os.tmpdir()), true)
     {
       t.ok(json.files.file)
-      const buf = await fs.readFile(json.files.file.value)
+      const buf = await fs.readFile(json.files.file.value as string)
       t.equal(buf.toString(), 'helloworld')
     }
   })
@@ -101,13 +101,13 @@ t.test('FileStorage - multipart', function (t) {
     t.equal(json.body.file[2].startsWith(os.tmpdir()), true)
     {
       t.ok(json.files.file[0])
-      const buf1 = await fs.readFile(json.files.file[0].value)
+      const buf1 = await fs.readFile(json.files.file[0].value as string)
       t.equal(buf1.toString(), 'helloworld')
       t.ok(json.files.file[1])
-      const buf2 = await fs.readFile(json.files.file[1].value)
+      const buf2 = await fs.readFile(json.files.file[1].value as string)
       t.equal(buf2.toString(), 'helloworldhelloworld')
       t.ok(json.files.file[2])
-      const buf3 = await fs.readFile(json.files.file[2].value)
+      const buf3 = await fs.readFile(json.files.file[2].value as string)
       t.equal(buf3.toString(), 'helloworldhelloworldhelloworld')
     }
   })

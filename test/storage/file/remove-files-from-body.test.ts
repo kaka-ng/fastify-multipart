@@ -33,7 +33,7 @@ t.test('FileStorage - removeFilesFromBody', function (t) {
     t.notOk(json.body.file)
     {
       t.ok(json.files.file)
-      const buf = await fs.readFile(json.files.file.value)
+      const buf = await fs.readFile(json.files.file.value as string)
       t.equal(buf.toString(), 'helloworld')
     }
   })
@@ -61,7 +61,7 @@ t.test('FileStorage - removeFilesFromBody', function (t) {
     t.notOk(json.body.file)
     {
       t.ok(json.files.file)
-      const buf = await fs.readFile(json.files.file.value)
+      const buf = await fs.readFile(json.files.file.value as string)
       t.equal(buf.toString(), 'helloworld')
     }
   })
@@ -90,7 +90,7 @@ t.test('FileStorage - removeFilesFromBody', function (t) {
     t.notOk(json.body.file)
     {
       t.ok(json.files.file)
-      const buf = await fs.readFile(json.files.file.value)
+      const buf = await fs.readFile(json.files.file.value as string)
       t.equal(buf.toString(), 'helloworld')
     }
   })
