@@ -7,9 +7,9 @@ import { kIsMultipartParsed, kStorage } from '../symbols'
 import { Adapter, type AdapterIteratorResult, type AdapterParseReturn } from './adapter'
 
 export class BusboyAdapter extends Adapter {
-  #busboy: Busboy.Busboy
-  #storage: Storage
-  #removeFromBody: boolean
+  readonly #busboy: Busboy.Busboy
+  readonly #storage: Storage
+  readonly #removeFromBody: boolean
 
   constructor (request: FastifyRequest, option: FastifyMultipartOption) {
     super(request, option)
@@ -77,9 +77,8 @@ export class BusboyAdapter extends Adapter {
           error = FST_MP_FILE_SIZE_LIMIT(name)
         })
         // safety
-        /* istanbul ignore next */
+        /* c8 ignore next 3 */
         value.on('error', function (err) {
-          /* istanbul ignore next */
           error = err
         })
         // we do not consume stream here
@@ -132,7 +131,7 @@ export class BusboyAdapter extends Adapter {
         }
       },
       // not able to test but good to have
-      /* istanbul ignore next */
+      /* c8 ignore next 8 */
       async return () {
         // proper cleanup process
         onDone()
@@ -142,7 +141,7 @@ export class BusboyAdapter extends Adapter {
         }
       },
       // not able to test but good to have
-      /* istanbul ignore next */
+      /* c8 ignore next 8 */
       async throw () {
         // error cleanup process
         onDone()

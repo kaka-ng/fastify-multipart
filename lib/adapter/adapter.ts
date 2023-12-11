@@ -54,9 +54,9 @@ export class Adapter {
       async next () {
         return { value: undefined, done: true }
       },
+      // not able to test but good to have
+      /* c8 ignore next 3 */
       [Symbol.asyncIterator] () {
-        // not able to test but good to have
-        /* istanbul ignore next */
         return this
       }
     }

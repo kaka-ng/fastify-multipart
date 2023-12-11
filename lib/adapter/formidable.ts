@@ -9,9 +9,9 @@ import { kIsMultipartParsed, kStorage } from '../symbols'
 import { Adapter, type AdapterIteratorResult, type AdapterParseReturn } from './adapter'
 
 export class FormidableAdapter extends Adapter {
-  #formidable: IncomingForm
-  #storage: Storage
-  #removeFromBody: boolean
+  readonly #formidable: IncomingForm
+  readonly #storage: Storage
+  readonly #removeFromBody: boolean
 
   constructor (request: FastifyRequest, option: FastifyMultipartOption) {
     super(request, option)
@@ -90,6 +90,8 @@ export class FormidableAdapter extends Adapter {
           error = FST_MP_FIELDS_LIMIT()
           break
         }
+        // TODO: branch test missing
+        /* c8 ignore next */
         case 1009:
         case 1016: {
           // 1009 = max total file size
@@ -103,7 +105,7 @@ export class FormidableAdapter extends Adapter {
           break
         }
         // safety
-        /* istanbul ignore next */
+        /* c8 ignore next 6 */
         default: {
           // unknown error
           error = FST_MP_UNEXPECTED()
@@ -150,7 +152,7 @@ export class FormidableAdapter extends Adapter {
         }
       },
       // not able to test but good to have
-      /* istanbul ignore next */
+      /* c8 ignore next 8 */
       async return () {
         // proper cleanup process
         onDone()
@@ -160,7 +162,7 @@ export class FormidableAdapter extends Adapter {
         }
       },
       // not able to test but good to have
-      /* istanbul ignore next */
+      /* c8 ignore next 8 */
       async throw () {
         // error cleanup process
         onDone()

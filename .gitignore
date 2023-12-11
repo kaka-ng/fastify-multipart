@@ -125,3 +125,4 @@ dist
 yarn.lock
 !jest.config.js
 !rollup.config.js
+.tap

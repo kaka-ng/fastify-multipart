@@ -141,7 +141,7 @@ const plugin: FastifyPluginAsync<FastifyMultipartOption> = async function (fasti
         return await iterator.next()
       },
       // not able to test but good to have
-      /* istanbul ignore next */
+      /* c8 ignore next 7 */
       async return () {
         await iterator?.return?.()
         return {
@@ -150,7 +150,7 @@ const plugin: FastifyPluginAsync<FastifyMultipartOption> = async function (fasti
         }
       },
       // not able to test but good to have
-      /* istanbul ignore next */
+      /* c8 ignore next 7 */
       async throw (err) {
         await iterator?.throw?.(err)
         return {
